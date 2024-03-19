@@ -1,0 +1,23 @@
+apiVersion: deploy.my.api.group/v1alpha1
+kind: MyAppResource
+metadata:
+  labels:
+    app.kubernetes.io/name: myappresource
+    app.kubernetes.io/instance: myappresource-sample
+    app.kubernetes.io/part-of: appdeploy
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: appdeploy
+  name: myappresource-sample
+spec:
+  replicaCount: 2
+  resources:
+    memoryLimit: 64Mi
+    cpuRequest: 100m
+  image:
+    repository: ghcr.io/stefanprodan/podinfo
+    tag: latest
+  ui:
+    color: "#3374FF"
+    message: "App changes for string"
+  redis:
+    enabled: true
